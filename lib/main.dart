@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_music/pages/home_page.dart';
+import 'package:project_music/theme/dark_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: const HomePage(),
+      theme: darkMode,
     );
   }
 }
