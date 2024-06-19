@@ -12,6 +12,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        title: const Text('Project Music'),
+      ),
+      drawer: Drawer(),
     );
   }
 }
