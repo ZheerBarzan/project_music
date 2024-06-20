@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:project_music/pages/settings_page.dart";
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -17,30 +18,34 @@ class MyDrawer extends StatelessWidget {
               )),
             ),
             //home tile
-            ListTile(
-              title: const Row(
-                children: [
-                  Text('H O M E'),
-                  Spacer(),
-                  Icon(Icons.home),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(left: 25),
+              child: ListTile(
+                title: const Text("H O M E"),
+                leading: const Icon(
+                  Icons.home,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
-              onTap: () {
-                Navigator.pushNamed(context, '/');
-              },
             ),
             // setting tile
-            ListTile(
-              title: const Row(
-                children: [
-                  Text('S E T T I N G S'),
-                  Spacer(),
-                  Icon(Icons.settings),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(left: 25),
+              child: ListTile(
+                title: const Text("S E T T I N G S"),
+                leading: const Icon(Icons.settings),
+                onTap: () {
+                  Navigator.pop(context);
+
+                  // navigate to setting page
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()));
+                },
               ),
-              onTap: () {
-                Navigator.pushNamed(context, '/settings');
-              },
             ),
 
             //
