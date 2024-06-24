@@ -4,5 +4,10 @@ class Song {
   final String albumArtImagePath;
   final String songPath;
 
-  Song(this.songName, this.artistName, this.albumArtImagePath, this.songPath);
+  Song({
+    required this.songName,
+    required this.artistName,
+    required this.albumArtImagePath,
+    required this.songPath,
+  });
 }
