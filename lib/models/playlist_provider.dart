@@ -29,4 +29,6 @@ class PlaylistProvider extends ChangeNotifier {
       songPath: "assets/audio/R U Mine.mp3",
     ),
   ];
+
+  int? _currentSongIndex;
 }
