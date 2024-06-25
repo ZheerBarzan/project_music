@@ -29,6 +29,8 @@ class _HomePageState extends State<HomePage> {
 
             return ListTile(
               title: Text(song.songName),
+              subtitle: Text(song.artistName),
+              leading: Image.asset(song.albumArtImagePath),
             );
           },
         );
