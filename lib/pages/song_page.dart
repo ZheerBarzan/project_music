@@ -42,7 +42,7 @@ class SongPage extends StatelessWidget {
 
               // album artwork
 
-              NeuBox(child: Image.asset("lib/assets/images/am.jpg")),
+              NeuBox(child: Image.asset("assets/images/am.jpg")),
 
               // song duration process
 

@@ -7,29 +7,25 @@ class PlaylistProvider extends ChangeNotifier {
     Song(
       songName: "505",
       artistName: "Arctic Monkeys",
-      albumArtImagePath:
-          "/Users/zheer/projects/flutter/project_music/lib/assets/images/am.jpg",
+      albumArtImagePath: "assets/images/am.jpg",
       songPath: "assets/audio/505.mp3",
     ),
     Song(
       songName: "Do I Wanna Know?",
       artistName: "Arctic Monkeys",
-      albumArtImagePath:
-          "/Users/zheer/projects/flutter/project_music/lib/assets/images/am.jpg",
+      albumArtImagePath: "assets/images/am.jpg",
       songPath: "assets/audio/Do I Wanna Know.mp3",
     ),
     Song(
       songName: "I Wanna Be Yours",
       artistName: "Arctic Monkeys",
-      albumArtImagePath:
-          "/Users/zheer/projects/flutter/project_music/lib/assets/images/am.jpg",
+      albumArtImagePath: "assets/images/am.jpg",
       songPath: "assets/audio/I Wanna Be Yours.mp3",
     ),
     Song(
       songName: "R U Mine",
       artistName: "Arctic Monkeys",
-      albumArtImagePath:
-          "/Users/zheer/projects/flutter/project_music/lib/assets/images/am.jpg",
+      albumArtImagePath: "assets/images/am.jpg",
       songPath: "assets/audio/R U Mine.mp3",
     ),
   ];
