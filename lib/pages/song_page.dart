@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:project_music/components/neu_box.dart';
 import 'package:project_music/models/playlist_provider.dart';
+import 'package:project_music/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class SongPage extends StatelessWidget {
@@ -51,18 +53,30 @@ class SongPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset("assets/images/am.jpg"),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
                               children: [
-                                Text("505"),
+                                Text(
+                                  "505",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                                 Text("Arctic Monkeys"),
                               ],
                             ),
 
                             //heart Icon
+
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            ),
                           ],
                         ),
                       )
@@ -70,7 +84,43 @@ class SongPage extends StatelessWidget {
                   ),
                 ),
 
+                const SizedBox(
+                  height: 25,
+                ),
+
                 // song duration process
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // start and end time
+                          Text("0:00"),
+
+                          // shuffle and repeat button
+                          Icon(Icons.shuffle),
+
+                          Icon(Icons.repeat),
+
+                          // end time
+                          Text("3:00"),
+                        ],
+                      ),
+                      Slider(
+                        min: 0,
+                        max: 100,
+                        activeColor: Provider.of<ThemeProvider>(context)
+                            .themeData
+                            .colorScheme
+                            .outline,
+                        value: 50,
+                        onChanged: (value) {},
+                      ),
+                    ],
+                  ),
+                ),
 
                 // controls
               ],
