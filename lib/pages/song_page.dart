@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_music/components/neu_box.dart';
@@ -17,6 +18,7 @@ class SongPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // app bar
                 Row(
@@ -32,7 +34,7 @@ class SongPage extends StatelessWidget {
 
                     // title
 
-                    Text("P L A Y L I S T"),
+                    const Text("P L A Y L I S T"),
 
                     // menu button
                     IconButton(
@@ -89,11 +91,11 @@ class SongPage extends StatelessWidget {
                 ),
 
                 // song duration process
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     children: [
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // start and end time
@@ -108,21 +110,74 @@ class SongPage extends StatelessWidget {
                           Text("3:00"),
                         ],
                       ),
-                      Slider(
-                        min: 0,
-                        max: 100,
-                        activeColor: Provider.of<ThemeProvider>(context)
-                            .themeData
-                            .colorScheme
-                            .outline,
-                        value: 50,
-                        onChanged: (value) {},
-                      ),
                     ],
                   ),
                 ),
 
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    thumbShape:
+                        const RoundSliderThumbShape(enabledThumbRadius: 1),
+                  ),
+                  child: Slider(
+                    min: 0,
+                    max: 100,
+                    activeColor: Provider.of<ThemeProvider>(context)
+                        .themeData
+                        .colorScheme
+                        .outline,
+                    value: 50,
+                    onChanged: (value) {},
+                  ),
+                ),
                 // controls
+                const SizedBox(
+                  height: 25,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    // previous button
+                    GestureDetector(
+                      onTap: () {},
+                      child: NeuBox(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.skip_previous,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // play button
+                    GestureDetector(
+                      onTap: () {},
+                      child: NeuBox(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.play_arrow,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // next button
+                    GestureDetector(
+                      onTap: () {},
+                      child: NeuBox(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.skip_next,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
