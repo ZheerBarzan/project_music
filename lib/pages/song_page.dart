@@ -12,177 +12,183 @@ class SongPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(
-      builder: (context, value, child) => Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // app bar
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // back button
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back),
-                    ),
-
-                    // title
-
-                    const Text("P L A Y L I S T"),
-
-                    // menu button
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.menu),
-                    ),
-                  ],
-                ),
-
-                // album artwork
-
-                NeuBox(
-                  child: Column(
+      builder: (context, value, child) {
+        // get the playlist
+        final playlist = value.playlist;
+        // get the current song
+        final currentSong = playlist[value.currentSongIndex ?? 0];
+        return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // app bar
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset("assets/images/am.jpg"),
+                      // back button
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.arrow_back),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
+
+                      // title
+
+                      const Text("P L A Y L I S T"),
+
+                      // menu button
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.menu),
+                      ),
+                    ],
+                  ),
+
+                  // album artwork
+
+                  NeuBox(
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(currentSong.albumArtImagePath),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    currentSong.songName,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(currentSong.artistName),
+                                ],
+                              ),
+
+                              //heart Icon
+
+                              const Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 25,
+                  ),
+
+                  // song duration process
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Column(
+                      children: [
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "505",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text("Arctic Monkeys"),
-                              ],
-                            ),
+                            // start and end time
+                            Text("0:00"),
 
-                            //heart Icon
+                            // shuffle and repeat button
+                            Icon(Icons.shuffle),
 
-                            Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                            ),
+                            Icon(Icons.repeat),
+
+                            // end time
+                            Text("3:00"),
                           ],
                         ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                ),
 
-                const SizedBox(
-                  height: 25,
-                ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      thumbShape:
+                          const RoundSliderThumbShape(enabledThumbRadius: 1),
+                    ),
+                    child: Slider(
+                      min: 0,
+                      max: 100,
+                      activeColor: Provider.of<ThemeProvider>(context)
+                          .themeData
+                          .colorScheme
+                          .outline,
+                      value: 50,
+                      onChanged: (value) {},
+                    ),
+                  ),
+                  // controls
+                  const SizedBox(
+                    height: 25,
+                  ),
 
-                // song duration process
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // start and end time
-                          Text("0:00"),
+                      // previous button
+                      GestureDetector(
+                        onTap: () {},
+                        child: NeuBox(
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.skip_previous,
+                            ),
+                          ),
+                        ),
+                      ),
 
-                          // shuffle and repeat button
-                          Icon(Icons.shuffle),
+                      // play button
+                      GestureDetector(
+                        onTap: () {},
+                        child: NeuBox(
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.play_arrow,
+                            ),
+                          ),
+                        ),
+                      ),
 
-                          Icon(Icons.repeat),
-
-                          // end time
-                          Text("3:00"),
-                        ],
+                      // next button
+                      GestureDetector(
+                        onTap: () {},
+                        child: NeuBox(
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.skip_next,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
-                  ),
-                ),
-
-                SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    thumbShape:
-                        const RoundSliderThumbShape(enabledThumbRadius: 1),
-                  ),
-                  child: Slider(
-                    min: 0,
-                    max: 100,
-                    activeColor: Provider.of<ThemeProvider>(context)
-                        .themeData
-                        .colorScheme
-                        .outline,
-                    value: 50,
-                    onChanged: (value) {},
-                  ),
-                ),
-                // controls
-                const SizedBox(
-                  height: 25,
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // previous button
-                    GestureDetector(
-                      onTap: () {},
-                      child: NeuBox(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.skip_previous,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // play button
-                    GestureDetector(
-                      onTap: () {},
-                      child: NeuBox(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.play_arrow,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // next button
-                    GestureDetector(
-                      onTap: () {},
-                      child: NeuBox(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.skip_next,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

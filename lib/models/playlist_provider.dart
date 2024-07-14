@@ -7,7 +7,7 @@ class PlaylistProvider extends ChangeNotifier {
     Song(
       songName: "505",
       artistName: "Arctic Monkeys",
-      albumArtImagePath: "assets/images/am.jpg",
+      albumArtImagePath: "assets/images/505.jpg",
       songPath: "assets/audio/505.mp3",
     ),
     Song(
