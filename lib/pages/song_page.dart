@@ -58,7 +58,8 @@ class SongPage extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(currentSong.albumArtImagePath),
+                          child: Image.asset(currentSong.albumArtImagePath,
+                              height: 300, width: 300, fit: BoxFit.fill),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),

@@ -48,20 +48,76 @@ class PlaylistProvider extends ChangeNotifier {
   }
 
   //initally not playing
+  bool _isPlaying = false;
 
   // play
+  void play() async {
+    final String Path = _playlist[_currentSongIndex!].songPath;
+
+    await _audioPlayer.stop();
+    await _audioPlayer.play(AssetSource(Path));
+
+    _isPlaying = true;
+    notifyListeners();
+  }
 
   // pause
 
-  // resume
+  void pause() async {
+    await _audioPlayer.pause();
+    _isPlaying = false;
+    notifyListeners();
+  }
 
-  //puse or resume
+  // resume
+  void resume() async {
+    await _audioPlayer.resume();
+    _isPlaying = true;
+    notifyListeners();
+  }
+
+  //puase or resume
+
+  void togglePlay() async {
+    if (_isPlaying) {
+      pause();
+    } else {
+      resume();
+    }
+
+    notifyListeners();
+  }
 
   // seek
 
+  void seek(Duration duration) async {
+    await _audioPlayer.seek(duration);
+  }
+
   //next
+  void next() async {
+    if (_currentSongIndex != null) {
+      if (_currentSongIndex! < _playlist.length - 1) {
+        _currentSongIndex = _currentSongIndex! + 1;
+      } else {
+        _currentSongIndex = 0;
+      }
+    }
+  }
 
   // previous
+  void previous() async {
+    if (_currentDuration!.inSeconds > 3) {
+    } else {
+      if (_currentSongIndex != null) {
+        if (_currentSongIndex! > 0) {
+          _currentSongIndex = _currentSongIndex! - 1;
+        } else {
+          _currentSongIndex = _playlist.length - 1;
+        }
+      }
+    }
+  }
 
   // listen to duration
   void listenToDuration() {
@@ -79,7 +135,9 @@ class PlaylistProvider extends ChangeNotifier {
     });
     // listen for the song completed
 
-    _audioPlayer.onPlayerComplete.listen((event) {});
+    _audioPlayer.onPlayerComplete.listen((event) {
+      next();
+    });
   }
   // dispose of audio player
 
@@ -87,11 +145,18 @@ class PlaylistProvider extends ChangeNotifier {
 
   List<Song> get playlist => _playlist;
   int? get currentSongIndex => _currentSongIndex;
+  bool get isPlaying => _isPlaying;
+  Duration? get currentDuration => _currentDuration;
+  Duration? get totalDuration => _toatalDuration;
 
   //setters
 
   set currentSongIndex(int? index) {
     _currentSongIndex = index;
+
+    if (index != null) {
+      play();
+    }
     notifyListeners();
   }
 }
