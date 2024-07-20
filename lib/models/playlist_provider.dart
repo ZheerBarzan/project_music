@@ -9,25 +9,25 @@ class PlaylistProvider extends ChangeNotifier {
       songName: "505",
       artistName: "Arctic Monkeys",
       albumArtImagePath: "assets/images/505.jpg",
-      songPath: "assets/audio/505.mp3",
+      songPath: "audio/505.mp3",
     ),
     Song(
       songName: "Do I Wanna Know?",
       artistName: "Arctic Monkeys",
       albumArtImagePath: "assets/images/am.jpg",
-      songPath: "assets/audio/Do I Wanna Know.mp3",
+      songPath: "audio/Do I Wanna Know.mp3",
     ),
     Song(
       songName: "I Wanna Be Yours",
       artistName: "Arctic Monkeys",
       albumArtImagePath: "assets/images/am.jpg",
-      songPath: "assets/audio/I Wanna Be Yours.mp3",
+      songPath: "audio/I Wanna Be Yours.mp3",
     ),
     Song(
       songName: "R U Mine",
       artistName: "Arctic Monkeys",
       albumArtImagePath: "assets/images/am.jpg",
-      songPath: "assets/audio/R U Mine.mp3",
+      songPath: "audio/R U Mine.mp3",
     ),
   ];
 
