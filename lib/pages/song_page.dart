@@ -123,17 +123,20 @@ class SongPage extends StatelessWidget {
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       thumbShape:
-                          const RoundSliderThumbShape(enabledThumbRadius: 1),
+                          const RoundSliderThumbShape(enabledThumbRadius: 7),
                     ),
                     child: Slider(
                       min: 0,
-                      max: 100,
+                      max: value.totalDuration!.inSeconds.toDouble(),
                       activeColor: Provider.of<ThemeProvider>(context)
                           .themeData
                           .colorScheme
                           .outline,
-                      value: 50,
-                      onChanged: (value) {},
+                      value: value.currentDuration!.inSeconds.toDouble(),
+                      onChanged: (double double) {},
+                      onChangeEnd: (double double) {
+                        value.seek(Duration(seconds: double.toInt()));
+                      },
                     ),
                   ),
                   // controls
@@ -146,7 +149,7 @@ class SongPage extends StatelessWidget {
                     children: [
                       // previous button
                       GestureDetector(
-                        onTap: () {},
+                        onTap: value.previous,
                         child: NeuBox(
                           child: IconButton(
                             onPressed: () {},
@@ -159,12 +162,12 @@ class SongPage extends StatelessWidget {
 
                       // play button
                       GestureDetector(
-                        onTap: () {},
+                        onTap: value.togglePlay,
                         child: NeuBox(
                           child: IconButton(
                             onPressed: () {},
-                            icon: const Icon(
-                              Icons.play_arrow,
+                            icon: Icon(
+                              value.isPlaying ? Icons.pause : Icons.play_arrow,
                             ),
                           ),
                         ),
@@ -172,7 +175,7 @@ class SongPage extends StatelessWidget {
 
                       // next button
                       GestureDetector(
-                        onTap: () {},
+                        onTap: value.next,
                         child: NeuBox(
                           child: IconButton(
                             onPressed: () {},
