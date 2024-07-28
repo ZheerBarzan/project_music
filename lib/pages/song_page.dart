@@ -46,7 +46,7 @@ class SongPage extends StatelessWidget {
 
                       // title
 
-                      const Text("P L A Y L I S T"),
+                      const Text("Now Playing"),
 
                       // menu button
                       IconButton(
