@@ -34,12 +34,12 @@ class PlaylistProvider extends ChangeNotifier {
   int? _currentSongIndex;
 
   // audio player
-  final _audioPlayer = AudioPlayer();
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   //duration
 
   Duration? _currentDuration = Duration.zero;
-  Duration? _toatalDuration = Duration.zero;
+  Duration? _totalDuration = Duration.zero;
 
   //constructor
 
@@ -52,11 +52,9 @@ class PlaylistProvider extends ChangeNotifier {
 
   // play
   void play() async {
-    final String Path = _playlist[_currentSongIndex!].songPath;
-
+    final String path = _playlist[_currentSongIndex!].songPath;
     await _audioPlayer.stop();
-    await _audioPlayer.play(AssetSource(Path));
-
+    await _audioPlayer.play(AssetSource(path));
     _isPlaying = true;
     notifyListeners();
   }
@@ -76,7 +74,7 @@ class PlaylistProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //puase or resume
+  //pause or resume
 
   void togglePlay() async {
     if (_isPlaying) {
@@ -84,23 +82,22 @@ class PlaylistProvider extends ChangeNotifier {
     } else {
       resume();
     }
-
     notifyListeners();
   }
 
   // seek
 
-  void seek(Duration duration) async {
-    await _audioPlayer.seek(duration);
+  void seek(Duration position) async {
+    await _audioPlayer.seek(position);
   }
 
   //next
   void next() async {
     if (_currentSongIndex != null) {
       if (_currentSongIndex! < _playlist.length - 1) {
-        _currentSongIndex = _currentSongIndex! + 1;
+        currentSongIndex = _currentSongIndex! + 1;
       } else {
-        _currentSongIndex = 0;
+        currentSongIndex = 0;
       }
     }
   }
@@ -109,12 +106,10 @@ class PlaylistProvider extends ChangeNotifier {
   void previous() async {
     if (_currentDuration!.inSeconds > 3) {
     } else {
-      if (_currentSongIndex != null) {
-        if (_currentSongIndex! > 0) {
-          _currentSongIndex = _currentSongIndex! - 1;
-        } else {
-          _currentSongIndex = _playlist.length - 1;
-        }
+      if (_currentSongIndex! > 0) {
+        currentSongIndex = _currentSongIndex! - 1;
+      } else {
+        currentSongIndex = _playlist.length - 1;
       }
     }
   }
@@ -123,7 +118,7 @@ class PlaylistProvider extends ChangeNotifier {
   void listenToDuration() {
     // listen for current duration
     _audioPlayer.onDurationChanged.listen((newDuration) {
-      _toatalDuration = newDuration;
+      _totalDuration = newDuration;
       notifyListeners();
     });
 
@@ -147,7 +142,7 @@ class PlaylistProvider extends ChangeNotifier {
   int? get currentSongIndex => _currentSongIndex;
   bool get isPlaying => _isPlaying;
   Duration? get currentDuration => _currentDuration;
-  Duration? get totalDuration => _toatalDuration;
+  Duration? get totalDuration => _totalDuration;
 
   //setters
 

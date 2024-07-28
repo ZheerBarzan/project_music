@@ -97,7 +97,7 @@ class SongPage extends StatelessWidget {
                   ),
 
                   // song duration process
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
                       children: [
@@ -105,19 +105,24 @@ class SongPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             // start and end time
-                            Text("0:00"),
+                            Text(value.currentDuration!
+                                .toString()
+                                .split(".")[0]),
 
                             // shuffle and repeat button
-                            Icon(Icons.shuffle),
+                            const Icon(Icons.shuffle),
 
-                            Icon(Icons.repeat),
+                            const Icon(Icons.repeat),
 
                             // end time
-                            Text("3:00"),
+                            Text(value.totalDuration!.toString().split(".")[0]),
                           ],
                         ),
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 25,
                   ),
 
                   SliderTheme(
@@ -150,12 +155,10 @@ class SongPage extends StatelessWidget {
                       // previous button
                       GestureDetector(
                         onTap: value.previous,
-                        child: NeuBox(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.skip_previous,
-                            ),
+                        child: const NeuBox(
+                          child: Icon(
+                            Icons.skip_previous,
+                            size: 50,
                           ),
                         ),
                       ),
@@ -164,11 +167,9 @@ class SongPage extends StatelessWidget {
                       GestureDetector(
                         onTap: value.togglePlay,
                         child: NeuBox(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              value.isPlaying ? Icons.pause : Icons.play_arrow,
-                            ),
+                          child: Icon(
+                            value.isPlaying ? Icons.pause : Icons.play_arrow,
+                            size: 50,
                           ),
                         ),
                       ),
@@ -176,12 +177,10 @@ class SongPage extends StatelessWidget {
                       // next button
                       GestureDetector(
                         onTap: value.next,
-                        child: NeuBox(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.skip_next,
-                            ),
+                        child: const NeuBox(
+                          child: Icon(
+                            Icons.skip_next,
+                            size: 50,
                           ),
                         ),
                       ),
