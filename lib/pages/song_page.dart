@@ -9,6 +9,13 @@ import 'package:provider/provider.dart';
 class SongPage extends StatelessWidget {
   const SongPage({super.key});
 
+  String timeFormat(Duration duration) {
+    String twoDigits =
+        duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+    String formattedTime = "${duration.inMinutes}:$twoDigits";
+    return formattedTime;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(
@@ -105,9 +112,7 @@ class SongPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             // start and end time
-                            Text(value.currentDuration!
-                                .toString()
-                                .split(".")[0]),
+                            Text(timeFormat(value.currentDuration!)),
 
                             // shuffle and repeat button
                             const Icon(Icons.shuffle),
@@ -115,7 +120,7 @@ class SongPage extends StatelessWidget {
                             const Icon(Icons.repeat),
 
                             // end time
-                            Text(value.totalDuration!.toString().split(".")[0]),
+                            Text(timeFormat(value.totalDuration!)),
                           ],
                         ),
                       ],

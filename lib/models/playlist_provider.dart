@@ -105,6 +105,7 @@ class PlaylistProvider extends ChangeNotifier {
   // previous
   void previous() async {
     if (_currentDuration!.inSeconds > 3) {
+      seek(Duration.zero);
     } else {
       if (_currentSongIndex! > 0) {
         currentSongIndex = _currentSongIndex! - 1;
